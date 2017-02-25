@@ -39,10 +39,72 @@
 	
 
 	</style>
-	<script type="text/javascript">
+<script type="text/javascript">
 
+	var allnum =' ' ;
+	var singlenum = ' ' ;
+	var numArray = new Array() ;
+	var i = 0 ;
+	var j = 0 ;
+	var symbol = '';
+	var num ;
+	function input( num) {
 		
+	if( typeof num == 'number'|| num == 'd' || num == '.') 
+		{  
+			allnum = allnum + symbol ;
+			symbol= '';
+			document.getElementById("wholeInput").innerHTML = allnum ;
+
+			if(typeof num == 'number' || num == '.'){
+			numArray[i] = num ;
+			i ++  ;
+
+			singlenum = '';
+			for(j = 0 ; j <i ; j ++)
+			singlenum = singlenum + numArray[j] ;
+		
+		document.getElementById("singleInput").innerHTML = singlenum ;
+			}
+			else{
+				i--;
+				singlenum = '';
+				for( j = 0 ; j < i ; j ++)
+			singlenum = singlenum + numArray[j] ;
+		
+		document.getElementById("singleInput").innerHTML = singlenum ;
+			}
+		}
+	else{
+		i = 0 ;
+		symbol = num ;
+		allnum = allnum + singlenum ;
+		document.getElementById("wholeInput").innerHTML = allnum ;
+		singlenum = '';
+		
+		document.getElementById("singleInput").innerHTML = symbol ;
+		if( symbol == '=')
+		{
+			var result = eval(allnum);
+			allnum = allnum + '=' + result ;
+			document.getElementById("wholeInput").innerHTML = allnum ;
+			document.getElementById("singleInput").innerHTML = result ;
+
+		}
+		switch(symbol)
+		{
+			case 'C':
+			singlenum = '' ;
+			allnum = '' ;
+			symbol = '';
+			document.getElementById("wholeInput").innerHTML = allnum ;
+			document.getElementById("singleInput").innerHTML = singlenum ;
+
+		}
+	}
+}
 	</script>
+	
 </head>
 
 <body>
@@ -50,46 +112,46 @@
 <table>
 	
 	<tr>
-		<td id="wholeInput" colspan="4" >0</td>
+		<td id="wholeInput" colspan="4"  >0</td>
 	</tr>
 	<tr>
 		<td id="singleInput" colspan="4" >0</td>
 	</tr>
 	<tr>
-		<td>MC</td>
-		<td>MR</td>
-		<td>MS</td>
-		<td>M+</td>
+		<td onclick="input()">MC</td>
+		<td >MR</td>
+		<td >MS</td>
+		<td >M+</td>
 	</tr>
 	<tr>
-		<td>←</td>
-		<td>CE</td>
-		<td>C</td>
-		<td>±</td>
+		<td onclick="input('d')">←</td>
+		<td onclick="input('C')">CE</td>
+		<td onclick="input('C')">C</td> 
+		<td >±</td>
 	</tr>
 	<tr>
-		<td>7</td>
-		<td>8</td>
-		<td>9</td>
-		<td>/</td>
+		<td onclick="input(7)">7</td>
+		<td onclick="input(8)">8</td>
+		<td onclick="input(9)">9</td>
+		<td onclick="input('/')">/</td>
 	</tr>
 	<tr>
-		<td>4</td>
-		<td>5</td>
-		<td>6</td>
-		<td>*</td>
+		<td onclick="input(4)">4</td>
+		<td onclick="input(5)">5</td>
+		<td onclick="input(6)">6</td>
+		<td onclick="input('*')">*</td>
 	</tr>
 	<tr>
-		<td>1</td>
-		<td>2</td>
-		<td>3</td>
-		<td>-</td>
+		<td onclick="input(1)">1</td>
+		<td onclick="input(2)">2</td>
+		<td onclick="input(3)">3</td>
+		<td onclick="input('-')">-</td>
 	</tr>
 	<tr>
-		<td>0</td>
-		<td>.</td>
-		<td>=</td>
-		<td>+</td>
+		<td onclick="input(0)">0</td>
+		<td onclick="input('.')">.</td>
+		<td onclick="input('=')">=</td>
+		<td onclick="input('+')">+</td>
 	</tr>
 </table>
 </div>
